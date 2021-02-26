@@ -28,7 +28,11 @@ def menu():
 
 def main():
     try:
-        selected = xbmcgui.Dialog().select(_addon.getAddonInfo('name'), ['Clean packages','Clean thumbnails'])
+        selections = [
+            'Clean packages ~ ' + tools.getHumanReadableFolderSize(tools._packages_path),
+            'Clean thumbnails ~ ' + tools.getHumanReadableFolderSize(tools._thumbnail_path)
+        ]
+        selected = xbmcgui.Dialog().select(_addon.getAddonInfo('name'), selections)
         if selected == 0:
             packages()
         elif selected == 1:
