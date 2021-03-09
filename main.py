@@ -18,7 +18,7 @@ def packages():
 
 def thumbnails():
     if xbmcgui.Dialog().yesno(_addon.getAddonInfo('name'), "Delete all thumbnails?"):
-        tools.removeFolderContent(tools._thumbnail_path)
+        tools.removeFolderContent(tools._thumbnail_path, False)
         xbmcgui.Dialog().ok(_addon.getAddonInfo('name'), "Thumbnails (hopefully) removed. Please restart Kodi.")
 
 def menu():

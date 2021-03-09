@@ -18,15 +18,16 @@ _thumbnail_path = xbmc.translatePath('special://userdata/Thumbnails')
 #_addons_path = os.path.join(xbmc.translatePath('special://home'), 'addons')
 _packages_path = os.path.join(xbmc.translatePath('special://home/addons'), 'packages') 
 
-def removeFolderContent(translated_path):
+def removeFolderContent(translated_path, remove_folders = True):
     for root, dirs, files in os.walk(translated_path):
         for f in files:
             try:
                 os.unlink(os.path.join(root, f))
             except:
                 pass
-        for d in dirs:
-            shutil.rmtree(os.path.join(root, d),ignore_errors=True, onerror=None)
+        if remove_folders:
+            for d in dirs:
+                shutil.rmtree(os.path.join(root, d),ignore_errors=True, onerror=None)
 
 def getFolderSize(translated_path):
     total_size = 0
