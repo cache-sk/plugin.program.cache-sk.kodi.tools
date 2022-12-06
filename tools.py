@@ -9,14 +9,19 @@ import xbmc, xbmcaddon, xbmcgui, xbmcplugin
 import traceback
 import shutil
 
-#_userdata_path = xbmc.translatePath('special://userdata/')
-#_database_path = xbmc.translatePath('special://userdata/Database')
-#_addon_data = xbmc.translatePath('special://userdata/addon_data')
-_thumbnail_path = xbmc.translatePath('special://userdata/Thumbnails')
-#_cache_path = os.path.join(xbmc.translatePath('special://home'), 'cache')
-#_temp_path = os.path.join(xbmc.translatePath('special://home'), 'temp')
-#_addons_path = os.path.join(xbmc.translatePath('special://home'), 'addons')
-_packages_path = os.path.join(xbmc.translatePath('special://home/addons'), 'packages') 
+try:
+    from xbmc import translatePath
+except ImportError:
+    from xbmcvfs import translatePath
+
+#_userdata_path = translatePath('special://userdata/')
+#_database_path = translatePath('special://userdata/Database')
+#_addon_data = translatePath('special://userdata/addon_data')
+_thumbnail_path = translatePath('special://userdata/Thumbnails')
+#_cache_path = os.path.join(translatePath('special://home'), 'cache')
+#_temp_path = os.path.join(translatePath('special://home'), 'temp')
+#_addons_path = os.path.join(translatePath('special://home'), 'addons')
+_packages_path = os.path.join(translatePath('special://home/addons'), 'packages') 
 
 def removeFolderContent(translated_path, remove_folders = True):
     for root, dirs, files in os.walk(translated_path):
